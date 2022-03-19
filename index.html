@@ -24,8 +24,8 @@ async function getData(){
     let data=getData()
    // console.log(data)
   
-  let interval=setInterval(()=>{
-    
+  let interval= async ()=>{ setInterval(()=>{
+    await getdata()
     mainFunction()
 },10)
 
