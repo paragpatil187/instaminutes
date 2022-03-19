@@ -1,6 +1,8 @@
 # instaminutes
 
-steps: use following commands 
+steps:
+add new db.json for new events
+use following commands 
 
 npm install
 
@@ -8,4 +10,4 @@ json-server --watch db.json
 
 run live server
 
-get output in console
+get output 
