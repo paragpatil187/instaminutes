@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+//console.log(data)
+//check at each 10 milisec for main function 
+async function getData(){
+        let res=await fetch(`http://localhost:3000/api/data`);
+        let data=await res.json();
+         
+        return data
+        
+    }
+    let data=getData()
+   // console.log(data)
+  
+  let interval=setInterval(()=>{
+    
+    mainFunction()
+},10)
+
+
+
+ function mainFunction()
+
+ {
+    
+     data.forEach((e)=>{
+    
+       //if match to time refresh interval 
+        if(formattimeandDate()==e.dateTime){
+            //console.log("hello")
+            
+    name = e.text;
+    
+    //print reverse event name 
+     reverseOutput(name)
+     clearInterval(interval)
+            
+            
+        }     
+    
+})
+ }
+ //for compare two date and time without miliseconds
+function formattimeandDate(){
+    now = new Date();
+    if((now.getMonth()+1) < 10){
+        month = "0"+(now.getMonth()+1)
+    }
+    else{
+        month=(now.getMonth()+1)
+    }
+
+    if(now.getDate()<10){
+        date = "0"+ now.getDate()
+    }
+    else{
+        date = now.getDate()
+    }
+
+   if(now.getHours()<10){
+       hrs = "0"+now.getHours()
+   }
+   else{
+       hrs  = now.getHours()
+   }
+
+   if(now.getMinutes()<10){
+       mins = "0"+ now.getMinutes()
+   }
+   else{
+       mins = now.getMinutes()
+   }
+
+   if(now.getSeconds()<10) {
+       sec = "0" + now.getSeconds()
+   }
+   else{
+       sec = now.getSeconds()
+   }
+
+   presentDate = now.getFullYear()+'-'+month+'-'+date;
+
+
+   presentTime = hrs+":"+mins+":"+sec;
+
+   return (presentDate+" "+presentTime);
+}
+
+function reverseOutput(name){
+   // console.log(name)
+    var n=name.length
+    var output=""
+    for(i=n-1;i>=0;i--){
+        output+=name[i]
+    }
+    const timerp=setTimeout(()=>{
+        console.log(output)
+        //aviod interval to set 0
+        interval=setInterval(mainFunction,10)
+    },n*1000)
+}
+
+</script>
+</html>
