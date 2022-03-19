@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1 id="con"></h1>
     
 </body>
 <script>
@@ -106,6 +107,8 @@ function reverseOutput(name){
     }
     const timerp=setTimeout(()=>{
         console.log(output)
+        var ret=document.getElementById("con")
+        ret.innerText=output
         //aviod interval to set 0
         interval=setInterval(mainFunction,10)
     },n*1000)
